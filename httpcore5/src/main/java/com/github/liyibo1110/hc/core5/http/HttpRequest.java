@@ -1,5 +1,7 @@
 package com.github.liyibo1110.hc.core5.http;
 
+import com.github.liyibo1110.hc.core5.net.URIAuthority;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 

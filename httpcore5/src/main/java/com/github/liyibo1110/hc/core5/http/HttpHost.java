@@ -4,6 +4,7 @@ import com.github.liyibo1110.hc.core5.annotation.Contract;
 import com.github.liyibo1110.hc.core5.annotation.ThreadingBehavior;
 import com.github.liyibo1110.hc.core5.net.Host;
 import com.github.liyibo1110.hc.core5.net.NamedEndpoint;
+import com.github.liyibo1110.hc.core5.net.URIAuthority;
 import com.github.liyibo1110.hc.core5.util.Args;
 import com.github.liyibo1110.hc.core5.util.LangUtils;
 import com.github.liyibo1110.hc.core5.util.TextUtils;
@@ -33,8 +34,8 @@ public final class HttpHost implements NamedEndpoint, Serializable {
 
     public HttpHost(final String scheme, final InetAddress address, final String hostname, final int port) {
         Args.containsNoBlanks(hostname, "Host name");
-        this.host = new Host(hostname, port);
         this.schemeName = scheme != null ? TextUtils.toLowerCase(scheme) : DEFAULT_SCHEME.id;
+        this.host = new Host(hostname, port);
         this.address = address;
     }
 
