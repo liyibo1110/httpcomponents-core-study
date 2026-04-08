@@ -8,5 +8,5 @@ import java.io.Closeable;
  * @date 2026-04-03 16:35
  */
 public interface ClassicHttpResponse extends HttpResponse, HttpEntityContainer, Closeable {
-    // 空的
+    //  只是整合了HttpResponse、HttpEntityContainer以及Closeable接口
 }

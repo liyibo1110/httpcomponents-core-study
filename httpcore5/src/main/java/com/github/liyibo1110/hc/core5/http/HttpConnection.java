@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.net.SocketAddress;
 
 /**
- * 通用的HTTP连接，在客户端和服务器端均可使用。
+ * 通用的HTTP连接抽象，在客户端和服务器端均可使用。
  * @author liyibo
  * @date 2026-04-03 16:12
  */

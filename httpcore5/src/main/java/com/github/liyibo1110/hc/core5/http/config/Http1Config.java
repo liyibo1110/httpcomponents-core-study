@@ -1,0 +1,173 @@
+package com.github.liyibo1110.hc.core5.http.config;
+
+import com.github.liyibo1110.hc.core5.annotation.Contract;
+import com.github.liyibo1110.hc.core5.annotation.ThreadingBehavior;
+import com.github.liyibo1110.hc.core5.util.Args;
+import com.github.liyibo1110.hc.core5.util.Timeout;
+
+/**
+ * HTTP/1.1 协议参数。
+ * 请注意行长度是以字节为单位而非字符为单位定义的。不过这仅在使用非标准HTTP字符集（如 UTF-8）作为协议元素时才适用。
+ * @author liyibo
+ * @date 2026-04-07 14:57
+ */
+@Contract(threading = ThreadingBehavior.IMMUTABLE)
+public class Http1Config {
+
+    public static final Http1Config DEFAULT = new Builder().build();
+
+    private final int bufferSize;
+    private final int chunkSizeHint;
+    private final Timeout waitForContinueTimeout;
+    private final int maxLineLength;
+    private final int maxHeaderCount;
+    private final int maxEmptyLineCount;
+    private final int initialWindowSize;
+
+    Http1Config(final int bufferSize, final int chunkSizeHint, final Timeout waitForContinueTimeout,
+                final int maxLineLength, final int maxHeaderCount, final int maxEmptyLineCount,
+                final int initialWindowSize) {
+        super();
+        this.bufferSize = bufferSize;
+        this.chunkSizeHint = chunkSizeHint;
+        this.waitForContinueTimeout = waitForContinueTimeout;
+        this.maxLineLength = maxLineLength;
+        this.maxHeaderCount = maxHeaderCount;
+        this.maxEmptyLineCount = maxEmptyLineCount;
+        this.initialWindowSize = initialWindowSize;
+    }
+
+    public int getBufferSize() {
+        return bufferSize;
+    }
+
+    public int getChunkSizeHint() {
+        return chunkSizeHint;
+    }
+
+    public Timeout getWaitForContinueTimeout() {
+        return waitForContinueTimeout;
+    }
+
+    public int getMaxLineLength() {
+        return maxLineLength;
+    }
+
+    public int getMaxHeaderCount() {
+        return maxHeaderCount;
+    }
+
+    public int getMaxEmptyLineCount() {
+        return this.maxEmptyLineCount;
+    }
+
+    public int getInitialWindowSize() {
+        return initialWindowSize;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder builder = new StringBuilder();
+        builder.append("[bufferSize=").append(bufferSize)
+               .append(", chunkSizeHint=").append(chunkSizeHint)
+               .append(", waitForContinueTimeout=").append(waitForContinueTimeout)
+               .append(", maxLineLength=").append(maxLineLength)
+               .append(", maxHeaderCount=").append(maxHeaderCount)
+               .append(", maxEmptyLineCount=").append(maxEmptyLineCount)
+               .append(", initialWindowSize=").append(initialWindowSize)
+               .append("]");
+        return builder.toString();
+    }
+
+    public static Http1Config.Builder custom() {
+        return new Builder();
+    }
+
+    public static Http1Config.Builder copy(final Http1Config config) {
+        Args.notNull(config, "Config");
+        return new Builder()
+                .setBufferSize(config.getBufferSize())
+                .setChunkSizeHint(config.getChunkSizeHint())
+                .setWaitForContinueTimeout(config.getWaitForContinueTimeout())
+                .setMaxHeaderCount(config.getMaxHeaderCount())
+                .setMaxLineLength(config.getMaxLineLength())
+                .setMaxEmptyLineCount(config.getMaxEmptyLineCount())
+                .setInitialWindowSize(config.getInitialWindowSize());
+    }
+
+    private static final int INIT_WINDOW_SIZE = 65535;
+    private static final int INIT_BUF_SIZE = 8192;
+    private static final Timeout INIT_WAIT_FOR_CONTINUE = Timeout.ofSeconds(3);
+    private static final int INIT_BUF_CHUNK = -1;
+    private static final int INIT_MAX_HEADER_COUNT = -1;
+    private static final int INIT_MAX_LINE_LENGTH = -1;
+    private static final int INIT_MAX_EMPTY_LINE_COUNT = 10;
+
+    public static class Builder {
+
+        private int bufferSize;
+        private int chunkSizeHint;
+        private Timeout waitForContinueTimeout;
+        private int maxLineLength;
+        private int maxHeaderCount;
+        private int maxEmptyLineCount;
+        private int initialWindowSize;
+
+        Builder() {
+            this.bufferSize = INIT_BUF_SIZE;
+            this.chunkSizeHint = INIT_BUF_CHUNK;
+            this.waitForContinueTimeout = INIT_WAIT_FOR_CONTINUE;
+            this.maxLineLength = INIT_MAX_LINE_LENGTH;
+            this.maxHeaderCount = INIT_MAX_HEADER_COUNT;
+            this.maxEmptyLineCount = INIT_MAX_EMPTY_LINE_COUNT;
+            this.initialWindowSize = INIT_WINDOW_SIZE;
+        }
+
+        public Builder setBufferSize(final int bufferSize) {
+            this.bufferSize = bufferSize;
+            return this;
+        }
+
+        public Builder setChunkSizeHint(final int chunkSizeHint) {
+            this.chunkSizeHint = chunkSizeHint;
+            return this;
+        }
+
+        public Builder setWaitForContinueTimeout(final Timeout waitForContinueTimeout) {
+            this.waitForContinueTimeout = waitForContinueTimeout;
+            return this;
+        }
+
+        public Builder setMaxLineLength(final int maxLineLength) {
+            this.maxLineLength = maxLineLength;
+            return this;
+        }
+
+        public Builder setMaxHeaderCount(final int maxHeaderCount) {
+            this.maxHeaderCount = maxHeaderCount;
+            return this;
+        }
+
+        public Builder setMaxEmptyLineCount(final int maxEmptyLineCount) {
+            this.maxEmptyLineCount = maxEmptyLineCount;
+            return this;
+        }
+
+        public Builder setInitialWindowSize(final int initialWindowSize) {
+            Args.positive(initialWindowSize, "Initial window size");
+            this.initialWindowSize = initialWindowSize;
+            return this;
+        }
+
+        public Http1Config build() {
+            return new Http1Config(
+                bufferSize,
+                chunkSizeHint,
+                waitForContinueTimeout,
+                maxLineLength,
+                maxHeaderCount,
+                maxEmptyLineCount,
+                initialWindowSize);
+        }
+    }
+}

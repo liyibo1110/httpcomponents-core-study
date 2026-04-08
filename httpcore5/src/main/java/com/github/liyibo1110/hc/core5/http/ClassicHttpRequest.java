@@ -6,5 +6,5 @@ package com.github.liyibo1110.hc.core5.http;
  * @date 2026-04-03 16:34
  */
 public interface ClassicHttpRequest extends HttpRequest, HttpEntityContainer {
-    // 空的
+    //  只是整合了HttpRequest和HttpEntityContainer接口
 }
