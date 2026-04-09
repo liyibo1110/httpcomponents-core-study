@@ -1,11 +1,12 @@
 package com.github.liyibo1110.hc.core5.http;
 
+import com.github.liyibo1110.hc.core5.function.Supplier;
+
 import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.List;
-import java.util.function.Supplier;
 
 /**
  * 可通过HTTP消息发送或接收的实体，根据内容的来源，HttpCore中有三种不同的实体类型：
