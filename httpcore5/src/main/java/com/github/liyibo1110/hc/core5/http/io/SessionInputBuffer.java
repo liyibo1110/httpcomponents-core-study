@@ -14,7 +14,7 @@ import java.io.InputStream;
 public interface SessionInputBuffer {
 
     /**
-     * 返回缓冲区中存储的长度数据。
+     * 返回缓冲区中存储的数据长度。
      */
     int length();
 
