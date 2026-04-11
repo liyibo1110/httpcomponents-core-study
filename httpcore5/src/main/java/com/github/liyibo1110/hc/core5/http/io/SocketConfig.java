@@ -19,6 +19,8 @@ public class SocketConfig {
 
     private static final Timeout DEFAULT_SOCKET_TIMEOUT = Timeout.ofMinutes(3);
 
+    public static final SocketConfig DEFAULT = new Builder().build();
+
     private final Timeout soTimeout;
     private final boolean soReuseAddress;
     private final TimeValue soLinger;

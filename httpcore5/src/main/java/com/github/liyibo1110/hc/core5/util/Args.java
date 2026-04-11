@@ -1,5 +1,7 @@
 package com.github.liyibo1110.hc.core5.util;
 
+import com.github.liyibo1110.hc.core5.http.EntityDetails;
+
 import java.lang.reflect.Array;
 import java.util.Collection;
 import java.util.Map;

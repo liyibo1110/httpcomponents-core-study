@@ -11,6 +11,26 @@ import com.github.liyibo1110.hc.core5.annotation.ThreadingBehavior;
 @Contract(threading = ThreadingBehavior.STATELESS)
 public interface ExceptionListener {
 
+    ExceptionListener NO_OP = new ExceptionListener() {
+        @Override
+        public void onError(final Exception ex) {}
+
+        @Override
+        public void onError(final HttpConnection connection, final Exception ex) {}
+    };
+
+    ExceptionListener STD_ERR = new ExceptionListener() {
+        @Override
+        public void onError(final Exception ex) {
+            ex.printStackTrace();
+        }
+
+        @Override
+        public void onError(final HttpConnection connection, final Exception ex) {
+            ex.printStackTrace();
+        }
+    };
+
     void onError(Exception ex);
 
     void onError(HttpConnection connection, Exception ex);

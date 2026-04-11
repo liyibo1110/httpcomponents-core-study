@@ -38,6 +38,12 @@ import java.util.List;
 import java.util.concurrent.atomic.AtomicReference;
 
 /**
+ * 阻塞式HTTP连接的公共传输底座，不负责完整的request/response解析流程，为上层DefaultBHttpServerConnection、DefaultBHttpClientConnection提供通用能力：
+ * 1、socket绑定与打开/关闭。
+ * 2、输入输出缓冲区。
+ * 3、entity输入/输出流创建。
+ * 4、连接状态检测。
+ * 5、timeout、SSL、endpoint、metrics等连接信息管理。
  * @author liyibo
  * @date 2026-04-09 15:27
  */
