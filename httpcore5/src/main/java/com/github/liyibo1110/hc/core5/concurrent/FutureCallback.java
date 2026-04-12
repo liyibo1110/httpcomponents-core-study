@@ -6,4 +6,10 @@ package com.github.liyibo1110.hc.core5.concurrent;
  * @date 2026-04-10 18:20
  */
 public interface FutureCallback<T> {
+
+    void completed(T result);
+
+    void failed(Exception ex);
+
+    void cancelled();
 }
