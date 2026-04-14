@@ -2,6 +2,10 @@ package com.github.liyibo1110.hc.core5.http;
 
 import com.github.liyibo1110.hc.core5.annotation.Contract;
 import com.github.liyibo1110.hc.core5.annotation.ThreadingBehavior;
+import com.github.liyibo1110.hc.core5.http.message.BasicHeaderValueFormatter;
+import com.github.liyibo1110.hc.core5.http.message.BasicHeaderValueParser;
+import com.github.liyibo1110.hc.core5.http.message.BasicNameValuePair;
+import com.github.liyibo1110.hc.core5.http.message.ParserCursor;
 import com.github.liyibo1110.hc.core5.util.Args;
 import com.github.liyibo1110.hc.core5.util.CharArrayBuffer;
 import com.github.liyibo1110.hc.core5.util.TextUtils;

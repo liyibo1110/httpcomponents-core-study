@@ -23,6 +23,8 @@ import com.github.liyibo1110.hc.core5.http.io.HttpServerConnection;
 import com.github.liyibo1110.hc.core5.http.io.HttpServerRequestHandler;
 import com.github.liyibo1110.hc.core5.http.io.entity.EntityUtils;
 import com.github.liyibo1110.hc.core5.http.io.entity.StringEntity;
+import com.github.liyibo1110.hc.core5.http.io.support.BasicHttpServerExpectationDecorator;
+import com.github.liyibo1110.hc.core5.http.io.support.BasicHttpServerRequestHandler;
 import com.github.liyibo1110.hc.core5.http.message.BasicClassicHttpResponse;
 import com.github.liyibo1110.hc.core5.http.message.MessageSupport;
 import com.github.liyibo1110.hc.core5.http.protocol.HttpContext;
@@ -75,7 +77,8 @@ public class HttpService {
                        final ConnectionReuseStrategy connReuseStrategy,
                        final HttpResponseFactory<ClassicHttpResponse> responseFactory,
                        final Http1StreamListener streamListener) {
-
+        this(processor, new BasicHttpServerExpectationDecorator(new BasicHttpServerRequestHandler(handlerMapper, responseFactory)),
+             connReuseStrategy, streamListener);
     }
 
     public HttpService(final HttpProcessor processor,

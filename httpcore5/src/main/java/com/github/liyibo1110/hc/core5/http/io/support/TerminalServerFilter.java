@@ -8,6 +8,7 @@ import com.github.liyibo1110.hc.core5.http.HttpException;
 import com.github.liyibo1110.hc.core5.http.HttpRequestMapper;
 import com.github.liyibo1110.hc.core5.http.HttpResponseFactory;
 import com.github.liyibo1110.hc.core5.http.HttpStatus;
+import com.github.liyibo1110.hc.core5.http.impl.io.DefaultClassicHttpResponseFactory;
 import com.github.liyibo1110.hc.core5.http.io.HttpFilterChain;
 import com.github.liyibo1110.hc.core5.http.io.HttpFilterHandler;
 import com.github.liyibo1110.hc.core5.http.io.HttpRequestHandler;
